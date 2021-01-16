@@ -39,7 +39,7 @@ export default function Profile() {
                     prefix={<LikeFilled />}
                     valueStyle={{ color: 'black', fontWeight: 'bold' }}
                   />
-                  <Avatar size={{ xxl: 150 }} icon={<UserOutlined />} />
+                  <Avatar size={150} icon={<UserOutlined />} />
                 </Card>
                 <Row justify="center">
                   <Col sm={10}>
