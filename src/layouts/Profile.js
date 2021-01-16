@@ -23,10 +23,10 @@ export default function Profile() {
     <Layout>
       <Navbar />
       <Layout>
-        <Sider width="400" theme="light" />
+        <Sider width="300" theme="light" style={{ background: '#ffffff00' }} />
         <Content>
           <Row align="middle" justify="center">
-            <Col>
+            <Col sm={20}>
               <Card
                 cover={<Image src="https://picsum.photos/seed/11/1500/500" />}
                 className="header-card-profile"
@@ -105,7 +105,7 @@ export default function Profile() {
             </Col>
           </Row>
         </Content>
-        <Sider width="400" theme="light" />
+        <Sider width="300" theme="light" style={{ background: '#ffffff00' }} />
       </Layout>
       <Footer>Footer</Footer>
     </Layout>
