@@ -19,14 +19,17 @@ export default function Post() {
       bordered={false}
       cover={
         <Image
-                className="post-img"
+          className="post-img"
           alt="Post"
           src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
         />
       }
       actions={[
-        <HeartOutlined key="like"/>,
-        <CommentOutlined key="comment" onClick={() => setCommentVisible(!CommentVisible)}/>,
+        <HeartOutlined key="like" />,
+        <CommentOutlined
+          key="comment"
+          onClick={() => setCommentVisible(!CommentVisible)}
+        />,
         <ShareAltOutlined key="share" />,
       ]}
     >
@@ -37,10 +40,10 @@ export default function Post() {
         title={PostUsername}
         description={PostContent}
       />
-      { CommentVisible && (
+      {CommentVisible && (
         <>
-        <Divider />
-        <p>lol comment</p>
+          <Divider />
+          <p>lol comment</p>
         </>
       )}
     </Card>

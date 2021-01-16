@@ -1,4 +1,3 @@
-import './layout.css';
 import {
   Layout,
   Row,
@@ -47,7 +46,10 @@ export default function Profile() {
                       <Space align="center">
                         <Avatar
                           src={
-                            <Image src="https://i.pinimg.com/originals/28/7e/59/287e594ee5eb7f0df4439ee606a17efe.png" />
+                            <Image
+                              preview={false}
+                              src="https://i.pinimg.com/originals/28/7e/59/287e594ee5eb7f0df4439ee606a17efe.png"
+                            />
                           }
                           shape="square"
                           size={48}
@@ -71,21 +73,30 @@ export default function Profile() {
                     <Space>
                       <Avatar
                         src={
-                          <Image src="https://image.shutterstock.com/image-vector/golden-cup-pixel-art-retro-260nw-1527041273.jpg" />
+                          <Image
+                            preview={false}
+                            src="https://image.shutterstock.com/image-vector/golden-cup-pixel-art-retro-260nw-1527041273.jpg"
+                          />
                         }
                         shape="square"
                         size={48}
                       />
                       <Avatar
                         src={
-                          <Image src="https://www.pngkit.com/png/detail/19-199923_ivy-clipart-medal-medali-png.png" />
+                          <Image
+                            preview={false}
+                            src="https://www.pngkit.com/png/detail/19-199923_ivy-clipart-medal-medali-png.png"
+                          />
                         }
                         shape="square"
                         size={48}
                       />
                       <Avatar
                         src={
-                          <Image src="https://i.pinimg.com/originals/28/7e/59/287e594ee5eb7f0df4439ee606a17efe.png" />
+                          <Image
+                            preview={false}
+                            src="https://i.pinimg.com/originals/28/7e/59/287e594ee5eb7f0df4439ee606a17efe.png"
+                          />
                         }
                         shape="square"
                         size={48}
