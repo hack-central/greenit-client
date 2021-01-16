@@ -50,3 +50,35 @@ a:hover {
   text-align: center;
   background: #ffffff00;
 }
+
+.eventCard {
+  margin-left: 18%;
+  margin-top: 2.5%;
+}
+
+.eventCard .ant-card-meta-title {
+  font-size: 40px;
+}
+
+.eventCard .ant-card-meta-description {
+  font-size: 25px;
+}
+
+.modalTitle {
+  font-size: 35px;
+  padding-bottom: 50px !important;
+}
+
+.modalSubTitle {
+  font-size: 20px;
+}
+
+.userImg {
+  position: relative;
+  top: -3%;
+  font-size: 20px;
+}
+
+.user {
+  font-size: 20px;
+}

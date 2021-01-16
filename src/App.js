@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './layouts/Home';
 import Profile from './layouts/Profile';
+import Events from './layouts/Events';
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
           <Home />
         </Route>
         <Route exact path="/events">
-          {/* <Events /> */}
+          <Events />
         </Route>
         <Route exact path="/profile">
           <Profile />
