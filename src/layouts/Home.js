@@ -1,6 +1,7 @@
 import { Layout, Row, Col, Typography } from 'antd';
 import Navbar from '../components/Navbar/Navbar';
 import Post from '../components/Post/Post';
+import Sidebar from '../components/Sidebar/Sidebar';
 
 const { Footer, Sider, Content } = Layout;
 const { Title, Link } = Typography;
@@ -10,10 +11,14 @@ export default function Home() {
     <Layout>
       <Navbar />
       <Layout>
-        <Sider>Sider</Sider>
+        <Sider width="360" className="feed-sidebar">
+          Sider
+        </Sider>
         <Content>
           <Col>
-            <Title className="home-feed-header">Greenit</Title>
+            <Title className="home-feed-header">
+              Some highlights from the community
+            </Title>
             <Post />
             <Post />
             <Post />
@@ -21,7 +26,9 @@ export default function Home() {
             <Post />
           </Col>
         </Content>
-        <Sider>Sider</Sider>
+        <Sider width="360" theme="light" className="feed-sidebar">
+          <Sidebar />
+        </Sider>
       </Layout>
       <Footer>Footer</Footer>
     </Layout>
