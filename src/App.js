@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './layouts/Home';
+import Profile from './layouts/Profile';
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
         </Route>
         <Route exact path="/events">
           {/* <Events /> */}
+        </Route>
+        <Route exact path="/profile">
+          <Profile />
         </Route>
       </Switch>
     </Router>
