@@ -10,7 +10,6 @@ import {
   Image,
   Space,
 } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
 import { Redirect } from 'react-router-dom';
 
 import Navbar from '../components/Navbar/Navbar';
@@ -83,7 +82,7 @@ export default function Profile() {
                     }
                     valueStyle={{ color: 'black', fontWeight: 'bold' }}
                   />
-                  <Avatar size={150} icon={<UserOutlined />} />
+                  <Avatar size={150} src={data.avatar} />
                 </Card>
                 <Row justify="center">
                   <Col sm={16}>
