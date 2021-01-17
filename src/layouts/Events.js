@@ -1,82 +1,109 @@
 import { useState } from 'react';
-import { Card, Divider, Row, Col, Modal, Typography, Avatar } from 'antd';
 import {
-  EnvironmentOutlined,
-  ClockCircleOutlined,
-  UserOutlined,
-} from '@ant-design/icons';
-const { Meta } = Card;
-const { Text } = Typography;
+  Layout,
+  Card,
+  Divider,
+  Row,
+  Col,
+  Modal,
+  Typography,
+  Avatar,
+  Button,
+  Input,
+  AutoComplete,
+} from 'antd';
+import { PlusSquareOutlined } from '@ant-design/icons';
+import Navbar from '../components/Navbar/Navbar';
+import Event from '../components/Event/Event';
+import PageFooter from '../components/PageFooter/PageFooter';
+
+import mapBg from '../assets/mapbg.png';
+
+const { Sider, Content } = Layout;
+
+const getRandomInt = (max, min = 0) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+const searchResult = (query) => {
+  return new Array(getRandomInt(5))
+    .join('.')
+    .split('.')
+    .map((_, idx) => {
+      const category = `${query}${idx}`;
+      return {
+        value: category,
+        label: (
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+            }}
+          >
+            <span>
+              Found {query} on{' '}
+              <a
+                href={`https://s.taobao.com/search?q=${query}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {category}
+              </a>
+            </span>
+            <span>{getRandomInt(200, 100)} results</span>
+          </div>
+        ),
+      };
+    });
+};
 
 export default function Events() {
-  const [visible, setVisible] = useState(false);
+  const [options, setOptions] = useState([]);
+
+  const handleSearch = (value) => {
+    setOptions(value ? searchResult(value) : []);
+  };
+
+  const onSelect = (value) => {
+    console.log('onSelect', value);
+  };
+
   return (
-    <>
-      <Card
-        style={{ width: 1000 }}
-        hoverable
-        className="eventCard"
-        onClick={() => setVisible(true)}
-      >
-        <Row>
-          <Col span={8}>
-            <img
-              alt="example"
-              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-            />
+    <Layout>
+      <Navbar />
+
+      <Layout style={{ maxHeight: '80vh', overflowY: 'scroll', overflowX: 'hidden', marginTop: '10px' }}>
+        <Content>
+          <Col className="event-col">
+            <AutoComplete
+              dropdownMatchSelectWidth={252}
+              style={{
+                width: '80%',
+                marginBottom: '20px',
+              }}
+              options={options}
+              onSelect={onSelect}
+              onSearch={handleSearch}
+            >
+              <Input.Search
+                size="large"
+                placeholder="Search for an event or place"
+                enterButton
+              />
+            </AutoComplete>
+            <Event />
+            <Event />
+            <Event />
+            <Event />
+            <Event />
+            <Event />
           </Col>
-          <Col span={16}>
-            <Meta title="Event Name" description="Location" />
-          </Col>
-        </Row>
-      </Card>
-      <Modal
-        centered
-        visible={visible}
-        onOk={() => setVisible(false)}
-        onCancel={() => setVisible(false)}
-        width={1000}
-      >
-        <Row>
-          <Col span={7}>
-            <img
-              alt="example"
-              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-            />
-          </Col>
-          <Col span={17}>
-            <Text className="modalTitle">Event Name</Text>
-            <br></br>
-            <Avatar
-              className="userImg"
-              style={{ backgroundColor: '#87d068' }}
-              icon={<UserOutlined />}
-            />
-            <Text type="success" className="user">
-              UserName
-            </Text>
-            <br></br>
-            <Text type="secondary" className="modalSubTitle">
-              <EnvironmentOutlined />
-              Location<br></br>
-              <ClockCircleOutlined />
-              Time
-            </Text>
-          </Col>
-        </Row>
-        <Divider dashed />
-        <Text>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum.
-        </Text>
-      </Modal>
-    </>
+        </Content>
+        <Sider className="event-sidebar" width="40%">
+          <img className="event-map-image" alt='map' src={mapBg} />
+        </Sider>
+      </Layout>
+      <PageFooter />
+    </Layout>
   );
 }

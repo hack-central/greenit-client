@@ -83,22 +83,40 @@ a:hover {
   text-align: center;
   background: #ffffff00;
 }
+.event-col {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px auto;
+  justify-content: center;
+}
+.event-sidebar {
+  background-color: transparent;
+  height: 100%;
+  border-radius: 10px;
+}
 
+.event-map-image{
+  margin-top: 20px;
+  border-radius: 15px;
+  position: fixed;
+  width: 36%;
+  max-height: 80vh; 
+  overflow: hidden;
+}
 .eventCard {
-  margin-left: 18%;
-  margin-top: 2.5%;
+  margin-bottom: 20px;
 }
 
 .eventCard .ant-card-meta-title {
-  font-size: 40px;
+  font-size: 30px;
 }
 
 .eventCard .ant-card-meta-description {
-  font-size: 25px;
+  font-size: 15px;
 }
 
 .modalTitle {
-  font-size: 35px;
+  font-size: 30px;
   padding-bottom: 50px !important;
 }
 

@@ -26,7 +26,7 @@ export default function Badges({ data }) {
                       '100%': '#fdbb2d',
                     }}
                     strokeWidth={20}
-                    percent={Math.random().toPrecision(1)*100}
+                    percent={Math.random().toPrecision(1) * 100}
                     status="active"
                   />
                 </>
