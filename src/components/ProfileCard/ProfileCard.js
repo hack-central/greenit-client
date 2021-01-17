@@ -16,7 +16,7 @@ export default function ProfileCard({ username, avatarurl }) {
   return (
     <Col>
       <Card
-        style={{ width: 300, marginTop: 16, margin: '0 auto' }}
+        style={{ width: 300, marginTop: 22, margin: '0 auto' }}
         cover={<Image src="https://picsum.photos/seed/11/1500/500" />}
         className="header-card-profile"
         bordered={false}

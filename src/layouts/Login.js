@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import {
   Layout,
-  Row,
   Card,
   Col,
   Form,
@@ -15,8 +14,9 @@ import {
 } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import PageFooter from '../components/PageFooter/PageFooter';
+import logo from '../assets/logo.png';
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Header, Sider, Content } = Layout;
 const { Title } = Typography;
 
 export default function Login() {
@@ -81,7 +81,7 @@ export default function Login() {
   return (
     <Layout>
       <Header style={{ backgroundColor: 'transparent' }}>
-        <Row>asfa</Row>
+        <img alt="logo" src={logo} style={{ maxHeight: '64px' }} />
       </Header>
       <Layout>
         <Sider className="login-sidebar" width="50%"></Sider>

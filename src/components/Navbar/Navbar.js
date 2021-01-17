@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { Layout, Row, Col, Avatar, Image, Typography, Space } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
+import logo from '../../assets/logo.png';
 
-const { Title } = Typography;
 const { Header } = Layout;
 
 export default function Navbar() {
@@ -26,13 +26,11 @@ export default function Navbar() {
   // Add useEffect for UserImgUrl
 
   return (
-    // TODO: Remove style tag
-    <Header style={{ backgroundColor: 'transparent' }}>
+    <Header style={{ backgroundColor: 'transparent', marginTop: '5px' }}>
       <Row>
         <Col span={8}>
           <Link to="/home">
-            {/* TODO: Replace with image icon instead of text */}
-            <Title level={3}>Greenit</Title>
+            <img alt="logo" src={logo} style={{  maxHeight: '64px'  }} />
           </Link>
         </Col>
         <Col className="align-right" span={8}>
