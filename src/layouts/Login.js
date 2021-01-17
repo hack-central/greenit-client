@@ -13,11 +13,51 @@ import {
   Modal,
 } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { Redirect } from 'react-router-dom';
 
 const { Header, Footer, Sider, Content } = Layout;
 const { Title } = Typography;
 
 export default function Login() {
+  const [user, setUser] = useState({});
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  useEffect(() => {
+    let loggedInUser = localStorage.getItem('earthyUser');
+    if (loggedInUser) {
+      loggedInUser = JSON.parse(loggedInUser);
+      loggedInUser.id && setUser(loggedInUser);
+    }
+  }, []);
+
+  // Handle Login
+  const onFinish = ({ username, password }) => {
+    loginHandler({ username, password });
+  };
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+  const loginHandler = async (details) => {
+    const res = await fetch('https://earthy.sauravmh.com/api/users');
+    const data = await res.json();
+    const { username, password } = details;
+
+    console.log(details);
+    const user = data.find(
+      (e) => e.email === username && e.password === password
+    );
+    if (user) {
+      localStorage.setItem('earthyUser', JSON.stringify(user));
+      setUser(user);
+    }
+  };
+
   const layout = {
     labelCol: {
       span: 8,
@@ -33,25 +73,9 @@ export default function Login() {
     },
   };
 
-  // Handle Login
-  const onFinish = (values) => {
-    console.log('Received values of form: ', values);
-  };
-
-  // Modal Logic
-  const [isModalVisible, setIsModalVisible] = useState(false);
-
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
+  if (user.id) {
+    return <Redirect to="/home" />;
+  }
 
   return (
     <Layout>
@@ -99,7 +123,7 @@ export default function Login() {
                     <Checkbox>Remember me</Checkbox>
                   </Form.Item>
 
-                  <a className="login-form-forgot" href="">
+                  <a className="login-form-forgot" href="/">
                     Forgot password
                   </a>
                 </Form.Item>
@@ -112,6 +136,7 @@ export default function Login() {
                   >
                     Log in
                   </Button>
+                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                   Or <a onClick={showModal}>register now!</a>
                 </Form.Item>
               </Form>
