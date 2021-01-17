@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar/Navbar';
 import Post from '../components/Post/Post';
 import Sidebar from '../components/Sidebar/Sidebar';
 import CreatePost from '../components/CreatePost/CreatePost';
+import ProfileCard from '../components/ProfileCard/ProfileCard';
 import { useEffect, useState } from 'react';
 
 const { Footer, Sider, Content } = Layout;
@@ -44,7 +45,7 @@ export default function Home() {
       <Navbar />
       <Layout>
         <Sider width="360" className="feed-sidebar">
-          Sider
+          <ProfileCard />
         </Sider>
         <Content>
           <Col>
