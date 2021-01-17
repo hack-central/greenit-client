@@ -9,13 +9,15 @@ const { Footer, Sider, Content } = Layout;
 const { Title } = Typography;
 
 export default function Home() {
-  const [data, setData] = useState([]);
+  const [res, setResponse] = useState({});
 
   useEffect(() => {
     (async () => {
       const res = await fetch('https://earthy.sauravmh.com/api/posts');
-      const data = await res.json();
-      setData(data);
+      const postsData = await res.json();
+      const usersRes = await fetch('https://earthy.sauravmh.com/api/users');
+      const usersData = await usersRes.json();
+      setResponse({ posts: postsData, users: usersData });
     })();
   }, []);
 
@@ -25,8 +27,8 @@ export default function Home() {
         itemLayout="vertical"
         size="large"
         pagination={{ pageSize: 5 }}
-        dataSource={data}
-        renderItem={(item) => <Post data={item} />}
+        dataSource={res.posts}
+        renderItem={(post) => <Post users={res.users} post={post} />}
       />
     );
   };

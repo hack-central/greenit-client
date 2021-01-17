@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Card, Avatar, Divider, Image } from 'antd';
+import { Card, Avatar, Divider, Image, Comment, List } from 'antd';
 import {
   HeartTwoTone,
   HeartFilled,
@@ -9,18 +9,24 @@ import {
 
 const { Meta } = Card;
 
-export default function Post({ data }) {
-  const PostUsername = `Anonymous user-${data?.userId}`;
-  const PostContent = data.content;
-  const photoUrl = data.photo;
+export default function Post({ post, users }) {
+  const PostUsername = users[post?.userId];
+  const PostContent = post.content;
+  const photoUrl = post.photo;
   const [CommentVisible, setCommentVisible] = useState(false);
   const [liked, setLiked] = useState(false);
+  const [isFetching, setFetching] = useState(true);
+
+  if (post && users.length > 0) {
+    setFetching(false);
+  }
 
   return (
     <Card
       style={{ width: '90%', margin: '20px auto' }}
       bordered={false}
       cover={<Image className="post-img" alt="Post" src={photoUrl} />}
+      loading={isFetching}
       actions={[
         !liked ? (
           <HeartTwoTone
@@ -50,10 +56,23 @@ export default function Post({ data }) {
         description={PostContent}
       />
       {CommentVisible && (
-        <>
-          <Divider />
-          <p>lol comment</p>
-        </>
+        <List
+          className="comments"
+          header={`${post.comments.length} replies`}
+          itemLayout="horizontal"
+          dataSource={post.comments}
+          renderItem={(item) => (
+            <li>
+              <Comment
+                actions={item.actions}
+                author={users[item.userId].firstName}
+                avatar={users[item.userId]}
+                content={item.content}
+                datetime={item.createdAt}
+              />
+            </li>
+          )}
+        />
       )}
     </Card>
   );
