@@ -8,7 +8,6 @@ import {
   Typography,
   Avatar,
   Steps,
-  Carousel,
 } from 'antd';
 import { EnvironmentOutlined, CalendarOutlined } from '@ant-design/icons';
 
