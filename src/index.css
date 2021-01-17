@@ -83,12 +83,12 @@ a:hover {
   text-align: center;
   background: #ffffff00;
 }
-.event-col {
+/* .event-col {
   display: flex;
   flex-wrap: wrap;
   margin: 20px auto;
   justify-content: center;
-}
+} */
 .event-sidebar {
   background-color: transparent;
   height: 100%;

@@ -8,6 +8,7 @@ import {
   Typography,
   Avatar,
   Steps,
+  Empty,
 } from 'antd';
 import { EnvironmentOutlined, CalendarOutlined } from '@ant-design/icons';
 
@@ -26,16 +27,20 @@ export default function Event({
 }) {
   const [visible, setVisible] = useState(false);
 
+  if (!eventName) {
+    return <Empty />;
+  }
+
   return (
     <>
       <Card
-        style={{ width: '90%' }}
         hoverable
         className="eventCard"
         onClick={() => setVisible(true)}
+        style={{ width: '90%' }}
       >
-        <Row>
-          <Col span={9}>
+        <Row justify="end">
+          <Col span={12}>
             <img alt="example" src={eventImage} />
           </Col>
           <Col span={12}>
@@ -63,13 +68,10 @@ export default function Event({
         width={1000}
       >
         <Row>
-          <Col span={7}>
-            <img
-              alt="example"
-              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-            />
+          <Col span={12}>
+            <img alt="example" src={eventImage} />
           </Col>
-          <Col span={17}>
+          <Col span={12}>
             <Text className="modalTitle">{eventName}</Text>
             <br />
             <Text type="secondary" className="modalSubTitle">

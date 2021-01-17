@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Row, Avatar, Input, Modal, Button, Card } from 'antd';
+import { Row, Avatar, Input, Modal, Button, Card, message } from 'antd';
 import {
   FormOutlined,
   PlaySquareOutlined,
@@ -12,12 +12,37 @@ const { TextArea } = Input;
 
 export default function CreatePost({ avatarurl, username }) {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [content, setContent] = useState('');
+  const [likes, setLikes] = useState(1);
+  let loggedUser = localStorage.getItem('earthyUser');
+  if (loggedUser) {
+    loggedUser = JSON.parse(loggedUser);
+  }
 
   const showModal = () => {
     setIsModalVisible(true);
   };
 
-  const handleOk = () => {
+  const handleOk = async () => {
+    const data = {
+      id: Math.random().toPrecision(1)*12,
+      title: 'My first post',
+      content: content,
+      likes: likes,
+      userId: loggedUser.id,
+      createdAt: new Date().toISOString(),
+    };
+
+    const req = await fetch('https://earthy.sauravmh.com/api/posts', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+
+    const res = await req.json();
+    if (res) {
+      message.success('Post successfully added');
+    }
     setIsModalVisible(false);
   };
 
@@ -79,6 +104,7 @@ export default function CreatePost({ avatarurl, username }) {
           style={{ border: 'none' }}
           rows={4}
           placeholder="What have you been up to?"
+          onChange={(e) => setContent(e.target.value)}
         />
       </Modal>
     </>
