@@ -137,7 +137,6 @@ const BadgesLogos = ({ trophies }) => {
     return null;
   }
   return trophies.map((name) => {
-    console.log(name);
     const imgName = trophyMap[name];
     return (
       <Avatar
