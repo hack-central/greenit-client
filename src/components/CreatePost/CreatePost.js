@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Row, Col, Avatar, Input, Typography, Modal, Button, Card } from 'antd';
+import { Row, Avatar, Input, Modal, Button, Card } from 'antd';
 import {
   FormOutlined,
   PlaySquareOutlined,
@@ -72,7 +72,7 @@ export default function CreatePost({ avatarurl, username }) {
         <Row style={{ marginBottom: '20px' }}>
           <Avatar size="large" src={avatarurl} />
           <Link style={{ paddingLeft: '10px', margin: 'auto 0' }} to="/profile">
-            {username}
+            Hey {username}!
           </Link>
         </Row>
         <TextArea
