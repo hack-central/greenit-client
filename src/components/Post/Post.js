@@ -6,6 +6,7 @@ import {
   CommentOutlined,
   ShareAltOutlined,
 } from '@ant-design/icons';
+import ta from 'time-ago';
 
 const { Meta } = Card;
 
@@ -64,9 +65,9 @@ export default function Post({ post, users }) {
               <Comment
                 actions={item.actions}
                 author={users[item.userId].firstName}
-                avatar={users[item.userId]}
+                avatar={users[item.userId].avatar}
                 content={item.content}
-                datetime={item.createdAt}
+                datetime={ta.ago(item.createdAt)}
               />
             </li>
           )}
