@@ -29,7 +29,7 @@ export default function NearFriendsList() {
         dataSource={users.slice(5, 10)}
         renderItem={(user) => (
           <SuggestedUser
-            avatarurl={user.avatar}
+            avatarurl={`${user.avatar}?q=${Math.random()}`}
             username={user.firstName}
             key={user.id}
           />
