@@ -69,7 +69,7 @@ export default function Profile() {
                       <Space>
                         <Title level={4}>username:</Title>
                         <Title level={5} copyable style={{ color: '#87d068' }}>
-                          {data.email.split('@')[0]}
+                          {data.email?.split('@')[0]}
                         </Title>
                       </Space>
                     </Row>
