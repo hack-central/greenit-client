@@ -6,6 +6,7 @@ import CreatePost from '../components/CreatePost/CreatePost';
 import ProfileCard from '../components/ProfileCard/ProfileCard';
 import { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
+import PageFooter from '../components/PageFooter/PageFooter';
 
 const { Footer, Sider, Content } = Layout;
 const { Title } = Typography;
@@ -72,7 +73,7 @@ export default function Home() {
           <Sidebar />
         </Sider>
       </Layout>
-      <Footer>Footer</Footer>
+      <PageFooter />
     </Layout>
   );
 }

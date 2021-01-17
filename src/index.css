@@ -95,12 +95,12 @@ a:hover {
   border-radius: 10px;
 }
 
-.event-map-image{
+.event-map-image {
   margin-top: 20px;
   border-radius: 15px;
   position: fixed;
   width: 36%;
-  max-height: 80vh; 
+  max-height: 80vh;
   overflow: hidden;
 }
 .eventCard {

@@ -30,7 +30,7 @@ export default function Navbar() {
       <Row>
         <Col span={8}>
           <Link to="/home">
-            <img alt="logo" src={logo} style={{  maxHeight: '64px'  }} />
+            <img alt="logo" src={logo} style={{ maxHeight: '64px' }} />
           </Link>
         </Col>
         <Col className="align-right" span={8}>

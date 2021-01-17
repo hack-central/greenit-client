@@ -1,18 +1,5 @@
 import { useState } from 'react';
-import {
-  Layout,
-  Card,
-  Divider,
-  Row,
-  Col,
-  Modal,
-  Typography,
-  Avatar,
-  Button,
-  Input,
-  AutoComplete,
-} from 'antd';
-import { PlusSquareOutlined } from '@ant-design/icons';
+import { Layout, Col, Input, AutoComplete } from 'antd';
 import Navbar from '../components/Navbar/Navbar';
 import Event from '../components/Event/Event';
 import PageFooter from '../components/PageFooter/PageFooter';
@@ -72,7 +59,14 @@ export default function Events() {
     <Layout>
       <Navbar />
 
-      <Layout style={{ maxHeight: '80vh', overflowY: 'scroll', overflowX: 'hidden', marginTop: '10px' }}>
+      <Layout
+        style={{
+          maxHeight: '80vh',
+          overflowY: 'scroll',
+          overflowX: 'hidden',
+          marginTop: '10px',
+        }}
+      >
         <Content>
           <Col className="event-col">
             <AutoComplete
@@ -100,7 +94,7 @@ export default function Events() {
           </Col>
         </Content>
         <Sider className="event-sidebar" width="40%">
-          <img className="event-map-image" alt='map' src={mapBg} />
+          <img className="event-map-image" alt="map" src={mapBg} />
         </Sider>
       </Layout>
       <PageFooter />
