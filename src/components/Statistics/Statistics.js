@@ -9,8 +9,8 @@ import {
 export default function Statistics() {
   return (
     <Card bordered={false} style={{ width: '90%', margin: '20px auto' }}>
-      <Row gutter={16}>
-        <Col span={6}>
+      <Row justify="center" gutter={16}>
+        <Col span={8}>
           <Statistic
             suffix={
               <Typography.Text type="secondary" style={{ fontSize: '0.5em' }}>
@@ -22,7 +22,7 @@ export default function Statistics() {
             valueStyle={{ textAlign: 'center' }}
           />
         </Col>
-        <Col span={6}>
+        <Col span={6} offset={2}>
           <Statistic
             suffix={
               <Typography.Text type="secondary" style={{ fontSize: '0.5em' }}>
@@ -34,7 +34,10 @@ export default function Statistics() {
             valueStyle={{ textAlign: 'center' }}
           />
         </Col>
-        <Col span={6}>
+      </Row>
+      <br />
+      <Row justify="center" gutter={16}>
+        <Col span={8}>
           <Statistic
             suffix={
               <Typography.Text type="secondary" style={{ fontSize: '0.5em' }}>
@@ -46,7 +49,7 @@ export default function Statistics() {
             valueStyle={{ textAlign: 'center' }}
           />
         </Col>
-        <Col span={6}>
+        <Col span={6} offset={2}>
           <Statistic
             suffix={
               <Typography.Text type="secondary" style={{ fontSize: '0.5em' }}>

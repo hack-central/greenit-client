@@ -33,7 +33,6 @@ export default function Profile() {
               >
                 <Card className="top-float-profile" bordered={false}>
                   <Statistic
-                    title="Total Likes"
                     value={1128}
                     prefix={<LikeFilled />}
                     valueStyle={{ color: 'black', fontWeight: 'bold' }}
@@ -41,30 +40,22 @@ export default function Profile() {
                   <Avatar size={150} icon={<UserOutlined />} />
                 </Card>
                 <Row justify="center">
+                  <Col sm={16}>
+                    <Title level={2} style={{ textAlign: 'center' }}>
+                      Kartik Choudhary
+                    </Title>
+                  </Col>
+                </Row>
+                <Row justify="center">
                   <Col sm={10}>
                     <Row align="bottom">
                       <Space align="center">
-                        <Avatar
-                          src={
-                            <Image
-                              preview={false}
-                              src="https://i.pinimg.com/originals/28/7e/59/287e594ee5eb7f0df4439ee606a17efe.png"
-                            />
-                          }
-                          shape="square"
-                          size={48}
-                        />
-                        <Title level={3}>points:</Title>
-                        <Title level={5} copyable style={{ color: 'green' }}>
-                          1220
+                        <Title level={3}>Username:</Title>
+                        <Title level={5} copyable style={{ color: '#87d068' }}>
+                          kartikcho
                         </Title>
                       </Space>
                     </Row>
-                  </Col>
-                  <Col sm={4}>
-                    <Title level={2} style={{ textAlign: 'center' }}>
-                      John Doe
-                    </Title>
                   </Col>
                   <Col
                     sm={10}

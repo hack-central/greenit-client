@@ -45,7 +45,7 @@ a:hover {
   justify-content: center;
 }
 
-.login-column{
+.login-column {
   background-color: transparent;
   display: flex;
   margin: 20px auto;
@@ -54,7 +54,8 @@ a:hover {
   height: 75vh;
 }
 .login-form {
-  max-width: 300px;margin: auto;
+  max-width: 300px;
+  margin: auto;
 }
 .login-form-forgot {
   float: right;
@@ -65,9 +66,9 @@ a:hover {
 .login-form-button {
   width: 100%;
 }
-.login-sidebar{
+.login-sidebar {
   background-color: transparent;
-  background: no-repeat url("./assets/loginbg.jpg");
+  background: no-repeat url('./assets/loginbg.jpg');
 }
 
 .top-float-profile {
