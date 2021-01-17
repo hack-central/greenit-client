@@ -4,11 +4,20 @@ import Post from '../components/Post/Post';
 import Sidebar from '../components/Sidebar/Sidebar';
 import CreatePost from '../components/CreatePost/CreatePost';
 import { useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 
 const { Footer, Sider, Content } = Layout;
 const { Title } = Typography;
 
 export default function Home() {
+  let loggedUser = localStorage.getItem('earthyUser');
+
+  if (!loggedUser) {
+    <Redirect to="/" />;
+  }
+
+  loggedUser = JSON.parse(loggedUser);
+
   const [res, setResponse] = useState({});
 
   useEffect(() => {
@@ -48,7 +57,10 @@ export default function Home() {
         </Sider>
         <Content>
           <Col>
-            <CreatePost />
+            <CreatePost
+              avatarurl={loggedUser?.avatarUrl}
+              username={loggedUser.firstName}
+            />
             <Title className="home-feed-header">
               Some highlights from the community!
             </Title>
