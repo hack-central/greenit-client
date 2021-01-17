@@ -1,8 +1,8 @@
-import { Row, Col, Card, Avatar, Image, Typography, Space } from 'antd';
-import SuggestedUser from '../SuggestedUser/SuggestedUser';
+import { Col, Card, Typography } from 'antd';
+import NearFriendsList from '../NearFriendsList/NearFriendsList';
 
 const { Meta } = Card;
-const { Title, Link } = Typography;
+const { Link } = Typography;
 
 export default function Sidebar() {
   return (
@@ -26,14 +26,7 @@ export default function Sidebar() {
           description="Sponsored"
         />
       </Card>
-      <Card style={{ width: 300, marginTop: 16 }}>
-        <Title level={4}>People you may know</Title>
-        <SuggestedUser username="Test Name" />
-        <SuggestedUser />
-        <SuggestedUser />
-        <SuggestedUser />
-        <SuggestedUser />
-      </Card>
+      <NearFriendsList />
     </Col>
   );
 }
