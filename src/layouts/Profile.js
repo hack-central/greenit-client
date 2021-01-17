@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import {
   Layout,
   Row,
@@ -12,8 +13,9 @@ import {
 import { UserOutlined } from '@ant-design/icons';
 import Navbar from '../components/Navbar/Navbar';
 import Badges from '../components/Badges/Badges';
+
+import NearFriendsList from '../components/NearFriendsList/NearFriendsList';
 import Statistics from '../components/Statistics/Statistics';
-import { useEffect, useState } from 'react';
 
 const { Footer, Sider, Content } = Layout;
 const { Title } = Typography;
@@ -118,6 +120,7 @@ export default function Profile() {
           <Row gutter={[16, 16]}>
             <Col sm={12}>
               <Statistics />
+              <NearFriendsList />
             </Col>
             <Col sm={12}>
               <Badges data={data} />
