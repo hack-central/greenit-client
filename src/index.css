@@ -83,18 +83,27 @@ a:hover {
   text-align: center;
   background: #ffffff00;
 }
+.event-col {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px auto;
+  justify-content: center;
+}
+.event-sidebar {
+  background-color: transparent;
+  height: 100%;
+}
 
 .eventCard {
-  margin-left: 18%;
-  margin-top: 2.5%;
+  margin-bottom: 20px;
 }
 
 .eventCard .ant-card-meta-title {
-  font-size: 40px;
+  font-size: 30px;
 }
 
 .eventCard .ant-card-meta-description {
-  font-size: 25px;
+  font-size: 15px;
 }
 
 .modalTitle {

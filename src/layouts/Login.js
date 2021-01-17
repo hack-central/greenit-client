@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import {
   Layout,
   Row,
@@ -13,7 +14,7 @@ import {
   Modal,
 } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { Redirect } from 'react-router-dom';
+import PageFooter from '../components/PageFooter/PageFooter';
 
 const { Header, Footer, Sider, Content } = Layout;
 const { Title } = Typography;
@@ -144,10 +145,7 @@ export default function Login() {
           </Col>
         </Content>
       </Layout>
-      <Footer style={{ textAlign: 'center' }}>
-        © Greenit 2021{' '}
-        <a href="https://github.com/hack-central/greenit-client">&lt;/&gt;</a>
-      </Footer>
+      <PageFooter />
       <Modal
         title="Create a Greenit Account"
         visible={isModalVisible}
