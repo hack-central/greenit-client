@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { Layout, Row, Col, Avatar, Image, Typography, Space } from 'antd';
+import { Layout, Row, Col, Avatar, Image, Space } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import logo from '../../assets/logo.png';
 
