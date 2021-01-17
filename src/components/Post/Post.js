@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Card, Avatar, Divider, Image, Comment, List } from 'antd';
+import { Card, Avatar, Image, Comment, List, Empty } from 'antd';
 import {
   HeartTwoTone,
   HeartFilled,
@@ -10,15 +10,14 @@ import {
 const { Meta } = Card;
 
 export default function Post({ post, users }) {
-  const PostUsername = users[post?.userId];
-  const PostContent = post.content;
-  const photoUrl = post.photo;
+  const PostUsername = users[post?.userId].firstName;
+  const PostContent = post?.content;
+  const photoUrl = post?.photo;
   const [CommentVisible, setCommentVisible] = useState(false);
   const [liked, setLiked] = useState(false);
-  const [isFetching, setFetching] = useState(true);
 
-  if (post && users.length > 0) {
-    setFetching(false);
+  if (post === {} || users.length <= 0) {
+    return <Empty />;
   }
 
   return (
@@ -26,7 +25,6 @@ export default function Post({ post, users }) {
       style={{ width: '90%', margin: '20px auto' }}
       bordered={false}
       cover={<Image className="post-img" alt="Post" src={photoUrl} />}
-      loading={isFetching}
       actions={[
         !liked ? (
           <HeartTwoTone
