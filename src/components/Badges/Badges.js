@@ -1,30 +1,12 @@
 import { Card, List, Avatar, Progress, Typography } from 'antd';
 
-export default function Badges() {
-  const data = [
-    {
-      title: 'Ant Design Title 1',
-    },
-    {
-      title: 'Ant Design Title 2',
-    },
-    {
-      title: 'Ant Design Title 3',
-    },
-    {
-      title: 'Ant Design Title 4',
-    },
-  ];
-
+export default function Badges({ data }) {
   return (
-    <Card
-      title="Badges Progress"
-      bordered={false}
-      style={{ width: '90%', margin: '20px auto' }}
-    >
+    <Card title="Badges Progress">
       <List
         itemLayout="horizontal"
-        dataSource={data}
+        dataSource={data.trophies}
+        pagination={{ pageSize: 4 }}
         renderItem={(item) => (
           <List.Item>
             <List.Item.Meta
@@ -34,19 +16,17 @@ export default function Badges() {
                   src="https://image.shutterstock.com/image-vector/golden-cup-pixel-art-retro-260nw-1527041273.jpg"
                 />
               }
-              title={<a href="https://ant.design">{item.title}</a>}
+              title={item}
               description={
                 <>
-                  <Typography.Text type="secondary">
-                    Mr. Green Level 7 achieved
-                  </Typography.Text>
+                  <Typography.Text type="secondary">{item}</Typography.Text>
                   <Progress
                     strokeColor={{
-                      '0%': '#108ee9',
-                      '100%': '#87d068',
+                      '0%': '#22c1c3',
+                      '100%': '#fdbb2d',
                     }}
                     strokeWidth={20}
-                    percent={70}
+                    percent={Math.random().toPrecision(1)*100}
                     status="active"
                   />
                 </>

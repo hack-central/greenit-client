@@ -1,14 +1,5 @@
 import { useState } from 'react';
-import {
-  Card,
-  Divider,
-  Row,
-  Col,
-  Modal,
-  Typography,
-  Avatar,
-  Image,
-} from 'antd';
+import { Card, Divider, Row, Col, Modal, Typography, Avatar } from 'antd';
 import {
   EnvironmentOutlined,
   ClockCircleOutlined,

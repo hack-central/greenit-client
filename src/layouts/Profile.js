@@ -9,23 +9,34 @@ import {
   Image,
   Space,
 } from 'antd';
-import { UserOutlined, LikeFilled } from '@ant-design/icons';
+import { UserOutlined } from '@ant-design/icons';
 import Navbar from '../components/Navbar/Navbar';
 import Badges from '../components/Badges/Badges';
 import Statistics from '../components/Statistics/Statistics';
+import { useEffect, useState } from 'react';
 
 const { Footer, Sider, Content } = Layout;
 const { Title } = Typography;
 
 export default function Profile() {
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    (async () => {
+      const res = await fetch('https://earthy.sauravmh.com/api/users/1');
+      const data = await res.json();
+      setData(data);
+    })();
+  }, []);
+
   return (
     <Layout>
       <Navbar />
       <Layout>
-        <Sider width="300" theme="light" style={{ background: '#ffffff00' }} />
+        <Sider width="400" theme="light" style={{ background: '#ffffff00' }} />
         <Content>
-          <Row align="middle" justify="center">
-            <Col sm={20}>
+          <Row justify="center" gutter={[16, 16]}>
+            <Col>
               <Card
                 cover={<Image src="https://picsum.photos/seed/11/1500/500" />}
                 className="header-card-profile"
@@ -34,7 +45,13 @@ export default function Profile() {
                 <Card className="top-float-profile" bordered={false}>
                   <Statistic
                     value={1128}
-                    prefix={<LikeFilled />}
+                    prefix={
+                      <Image
+                        preview={false}
+                        src="https://i.pinimg.com/originals/28/7e/59/287e594ee5eb7f0df4439ee606a17efe.png"
+                        width={35}
+                      />
+                    }
                     valueStyle={{ color: 'black', fontWeight: 'bold' }}
                   />
                   <Avatar size={150} icon={<UserOutlined />} />
@@ -42,17 +59,17 @@ export default function Profile() {
                 <Row justify="center">
                   <Col sm={16}>
                     <Title level={2} style={{ textAlign: 'center' }}>
-                      Kartik Choudhary
+                      {data.firstName} {data.lastName}
                     </Title>
                   </Col>
                 </Row>
-                <Row justify="center">
+                <Row justify="space-between">
                   <Col sm={10}>
-                    <Row align="bottom">
-                      <Space align="center">
-                        <Title level={3}>Username:</Title>
+                    <Row align="middle">
+                      <Space>
+                        <Title level={4}>username:</Title>
                         <Title level={5} copyable style={{ color: '#87d068' }}>
-                          kartikcho
+                          {data.email.split('@')[0]}
                         </Title>
                       </Space>
                     </Row>
@@ -98,16 +115,16 @@ export default function Profile() {
               </Card>
             </Col>
           </Row>
-          <Row>
+          <Row gutter={[16, 16]}>
             <Col sm={12}>
               <Statistics />
             </Col>
             <Col sm={12}>
-              <Badges />
+              <Badges data={data} />
             </Col>
           </Row>
         </Content>
-        <Sider width="300" theme="light" style={{ background: '#ffffff00' }} />
+        <Sider width="400" theme="light" style={{ background: '#ffffff00' }} />
       </Layout>
       <Footer>Footer</Footer>
     </Layout>
