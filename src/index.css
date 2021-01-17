@@ -29,6 +29,13 @@ a:hover {
   margin: 0 5%;
   padding-bottom: 20px;
 }
+.home-create-post {
+  margin: 50px 5%;
+}
+
+.home-create-post a:hover {
+  color: #1890ff !important;
+}
 
 .post-img {
   display: 'flex';
