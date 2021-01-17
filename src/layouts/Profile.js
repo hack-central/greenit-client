@@ -11,11 +11,28 @@ import {
   Space,
 } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
+import { Redirect } from 'react-router-dom';
+
 import Navbar from '../components/Navbar/Navbar';
 import Badges from '../components/Badges/Badges';
-
 import NearFriendsList from '../components/NearFriendsList/NearFriendsList';
 import Statistics from '../components/Statistics/Statistics';
+
+const trophyMap = {
+  'Mr. Green': 'mrGreen',
+  'Earth Saviour': 'earthSaviour',
+  'Novice Planter': 'earthCleaner',
+  'Green thumb Jr.': 'greenThumbJr',
+  'Green Thumb Sr.': 'greenThumbSr',
+  'Earth Cleaner': 'earthCleaner',
+  'Earth Cleaner Veteran': 'earthCleanerVeteran',
+  'Environmentalist lvl 1': 'environmentalistLvl1',
+  'Environmentalist lvl 2': 'environmentalistLvl2',
+  'Environmentalist lvl 3': 'environmentalistLvl3',
+  'Recycling Enthusiast': 'recyclingEnthusiast',
+  'Green Influencer Novice': 'greenInfluencerNovice',
+  'Green Influencer Veteran': 'greenInfluencerVeteran',
+};
 
 const { Footer, Sider, Content } = Layout;
 const { Title } = Typography;
@@ -24,8 +41,18 @@ export default function Profile() {
   const [data, setData] = useState({});
 
   useEffect(() => {
+    let loggedUser = localStorage.getItem('earthyUser');
+
+    if (!loggedUser) {
+      <Redirect to="/" />;
+    }
+
+    loggedUser = JSON.parse(loggedUser);
+
     (async () => {
-      const res = await fetch('https://earthy.sauravmh.com/api/users/1');
+      const res = await fetch(
+        `https://earthy.sauravmh.com/api/users/${loggedUser.id}`
+      );
       const data = await res.json();
       setData(data);
     })();
@@ -80,37 +107,8 @@ export default function Profile() {
                     sm={10}
                     style={{ textAlign: 'right', paddingRight: '1em' }}
                   >
-                    <Space>
-                      <Avatar
-                        src={
-                          <Image
-                            preview={false}
-                            src="https://image.shutterstock.com/image-vector/golden-cup-pixel-art-retro-260nw-1527041273.jpg"
-                          />
-                        }
-                        shape="square"
-                        size={48}
-                      />
-                      <Avatar
-                        src={
-                          <Image
-                            preview={false}
-                            src="https://www.pngkit.com/png/detail/19-199923_ivy-clipart-medal-medali-png.png"
-                          />
-                        }
-                        shape="square"
-                        size={48}
-                      />
-                      <Avatar
-                        src={
-                          <Image
-                            preview={false}
-                            src="https://i.pinimg.com/originals/28/7e/59/287e594ee5eb7f0df4439ee606a17efe.png"
-                          />
-                        }
-                        shape="square"
-                        size={48}
-                      />
+                    <Space size="large">
+                      <BadgesLogos trophies={data?.trophies} />
                     </Space>
                   </Col>
                 </Row>
@@ -133,3 +131,20 @@ export default function Profile() {
     </Layout>
   );
 }
+
+const BadgesLogos = ({ trophies }) => {
+  if (!trophies) {
+    return null;
+  }
+  return trophies.map((name) => {
+    console.log(name);
+    const imgName = trophyMap[name];
+    return (
+      <Avatar
+        src={<Image preview={false} src={`/badges/${imgName}.png`} />}
+        shape="square"
+        size={48}
+      />
+    );
+  });
+};
