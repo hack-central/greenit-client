@@ -92,8 +92,17 @@ a:hover {
 .event-sidebar {
   background-color: transparent;
   height: 100%;
+  border-radius: 10px;
 }
 
+.event-map-image{
+  margin-top: 20px;
+  border-radius: 15px;
+  position: fixed;
+  width: 36%;
+  max-height: 80vh; 
+  overflow: hidden;
+}
 .eventCard {
   margin-bottom: 20px;
 }
@@ -107,7 +116,7 @@ a:hover {
 }
 
 .modalTitle {
-  font-size: 35px;
+  font-size: 30px;
   padding-bottom: 50px !important;
 }
 
