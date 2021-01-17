@@ -55,7 +55,12 @@ export default function Home() {
       <Navbar />
       <Layout>
         <Sider width="360" className="feed-sidebar">
-          <ProfileCard />
+          <ProfileCard
+            trophies={loggedUser.trophies}
+            avatarurl={loggedUser.avatar}
+            username={loggedUser.firstName}
+            key={loggedUser.id}
+          />
         </Sider>
         <Content>
           <Col>

@@ -12,7 +12,23 @@ import { Link } from 'react-router-dom';
 
 const { Title } = Typography;
 
-export default function ProfileCard({ username, avatarurl }) {
+const trophyMap = {
+  'Mr. Green': 'mrGreen',
+  'Earth Saviour': 'earthSaviour',
+  'Novice Planter': 'earthCleaner',
+  'Green thumb Jr.': 'greenThumbJr',
+  'Green Thumb Sr.': 'greenThumbSr',
+  'Earth Cleaner': 'earthCleaner',
+  'Earth Cleaner Veteran': 'earthCleanerVeteran',
+  'Environmentalist lvl 1': 'environmentalistLvl1',
+  'Environmentalist lvl 2': 'environmentalistLvl2',
+  'Environmentalist lvl 3': 'environmentalistLvl3',
+  'Recycling Enthusiast': 'recyclingEnthusiast',
+  'Green Influencer Novice': 'greenInfluencerNovice',
+  'Green Influencer Veteran': 'greenInfluencerVeteran',
+};
+
+export default function ProfileCard({ username, avatarurl, trophies }) {
   return (
     <Col>
       <Card
@@ -39,42 +55,29 @@ export default function ProfileCard({ username, avatarurl }) {
         <Row>
           Recent Badges
           <Space>
-            <Avatar
-              src={
-                <Image
-                  preview={false}
-                  src="https://image.shutterstock.com/image-vector/golden-cup-pixel-art-retro-260nw-1527041273.jpg"
-                />
-              }
-              shape="square"
-              size={48}
-            />
-            <Avatar
-              src={
-                <Image
-                  preview={false}
-                  src="https://www.pngkit.com/png/detail/19-199923_ivy-clipart-medal-medali-png.png"
-                />
-              }
-              shape="square"
-              size={48}
-            />
-            <Avatar
-              src={
-                <Image
-                  preview={false}
-                  src="https://i.pinimg.com/originals/28/7e/59/287e594ee5eb7f0df4439ee606a17efe.png"
-                />
-              }
-              shape="square"
-              size={48}
-            />
+            <BadgesLogos trophies={trophies} />
           </Space>
         </Row>
       </Card>
     </Col>
   );
 }
+
+const BadgesLogos = ({ trophies }) => {
+  if (!trophies) {
+    return null;
+  }
+  return trophies.map((name) => {
+    const imgName = trophyMap[name];
+    return (
+      <Avatar
+        src={<Image preview={false} src={`/badges/${imgName}.png`} />}
+        shape="square"
+        size={48}
+      />
+    );
+  });
+};
 
 ProfileCard.defaultProps = {
   username: 'Username',
