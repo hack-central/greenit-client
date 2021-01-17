@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { Layout, Row, Col, Avatar, Image, Space } from 'antd';
+import { Layout, Row, Col, Avatar, Image, Space, Button } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import logo from '../../assets/logo.png';
 
@@ -9,21 +9,25 @@ const { Header } = Layout;
 export default function Navbar() {
   const [UserImg, setUserImg] = useState(false);
   const [UserImgUrl, setUserImgUrl] = useState('');
+  const [logStatus, setLogStatus] = useState(true);
 
   useEffect(() => {
     let loggedUser = localStorage.getItem('earthyUser');
 
-    if (!loggedUser) {
-      <Redirect to="/" />;
+    if (loggedUser) {
+      loggedUser = JSON.parse(loggedUser);
+      if (loggedUser.avatar) {
+        setUserImgUrl(loggedUser.avatar);
+        setUserImg(true);
+      }
+    } else {
+      setLogStatus(false);
     }
+  }, [logStatus]);
 
-    loggedUser = JSON.parse(loggedUser);
-    if (loggedUser.avatar) {
-      setUserImgUrl(loggedUser.avatar);
-      setUserImg(true);
-    }
-  }, []);
-  // Add useEffect for UserImgUrl
+  if (!logStatus) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <Header style={{ backgroundColor: 'transparent', marginTop: '5px' }}>
@@ -45,6 +49,15 @@ export default function Navbar() {
                 icon={!UserImg && <UserOutlined />}
               />
             </Link>
+            <Button
+              danger
+              onClick={() => {
+                localStorage.removeItem('earthyUser');
+                setLogStatus(false);
+              }}
+            >
+              Log Out
+            </Button>
           </Space>
         </Col>
       </Row>

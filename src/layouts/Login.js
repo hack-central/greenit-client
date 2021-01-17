@@ -21,13 +21,14 @@ const { Title } = Typography;
 
 export default function Login() {
   const [user, setUser] = useState({});
+  const [isLoggedIn, setLoggedIn] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   useEffect(() => {
     let loggedInUser = localStorage.getItem('earthyUser');
     if (loggedInUser) {
       loggedInUser = JSON.parse(loggedInUser);
-      loggedInUser.id && setUser(loggedInUser);
+      loggedInUser.id && setLoggedIn(true);
     }
   }, []);
 
@@ -74,7 +75,7 @@ export default function Login() {
     },
   };
 
-  if (user.id) {
+  if (user.id || isLoggedIn) {
     return <Redirect to="/home" />;
   }
 

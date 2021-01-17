@@ -12,14 +12,8 @@ const { Sider, Content } = Layout;
 const { Title } = Typography;
 
 export default function Home() {
-  let loggedUser = localStorage.getItem('earthyUser');
-
-  if (!loggedUser) {
-    <Redirect to="/" />;
-  }
-
-  loggedUser = JSON.parse(loggedUser);
-
+  const [user, setUser] = useState({});
+  const [isLoggedIn, setLoggedIn] = useState(true);
   const [res, setResponse] = useState({});
 
   useEffect(() => {
@@ -32,6 +26,16 @@ export default function Home() {
     };
 
     fetchReq();
+  }, []);
+
+  useEffect(() => {
+    let loggedUser = localStorage.getItem('earthyUser');
+    if (loggedUser) {
+      loggedUser = JSON.parse(loggedUser);
+      setUser(loggedUser);
+    } else {
+      setLoggedIn(false);
+    }
   }, []);
 
   const GeneratePosts = () => {
@@ -50,24 +54,25 @@ export default function Home() {
     );
   };
 
+  if (!isLoggedIn) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <Layout>
       <Navbar />
       <Layout>
         <Sider width="360" className="feed-sidebar">
           <ProfileCard
-            trophies={loggedUser.trophies}
-            avatarurl={loggedUser.avatar}
-            username={loggedUser.firstName}
-            key={loggedUser.id}
+            trophies={user.trophies}
+            avatarurl={user.avatar}
+            username={user.firstName}
+            key={user.id}
           />
         </Sider>
         <Content>
           <Col>
-            <CreatePost
-              avatarurl={loggedUser?.avatarUrl}
-              username={loggedUser.firstName}
-            />
+            <CreatePost avatarurl={user.avatar} username={user.firstName} />
             <Title className="home-feed-header">
               Some highlights from the community!
             </Title>
