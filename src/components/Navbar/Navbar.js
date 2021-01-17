@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import { Layout, Row, Col, Avatar, Image, Typography, Space } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 
@@ -10,6 +10,19 @@ export default function Navbar() {
   const [UserImg, setUserImg] = useState(false);
   const [UserImgUrl, setUserImgUrl] = useState('');
 
+  useEffect(() => {
+    let loggedUser = localStorage.getItem('earthyUser');
+
+    if (!loggedUser) {
+      <Redirect to="/" />;
+    }
+
+    loggedUser = JSON.parse(loggedUser);
+    if (loggedUser.avatar) {
+      setUserImgUrl(loggedUser.avatar);
+      setUserImg(true);
+    }
+  }, []);
   // Add useEffect for UserImgUrl
 
   return (
@@ -24,14 +37,16 @@ export default function Navbar() {
         </Col>
         <Col className="align-right" span={8}>
           <Space size={30}>
-            <Link>My Connections</Link>
+            <Link to="/profile">My Connections</Link>
             <Link to="/events">Events</Link>
-            <Avatar
-              style={{ backgroundColor: '#87d068' }}
-              size="large"
-              src={UserImg && <Image src={UserImgUrl} />}
-              icon={!UserImg && <UserOutlined />}
-            />
+            <Link to="/profile">
+              <Avatar
+                style={{ backgroundColor: '#87d068' }}
+                size="large"
+                src={UserImg && <Image src={UserImgUrl} preview={false} />}
+                icon={!UserImg && <UserOutlined />}
+              />
+            </Link>
           </Space>
         </Col>
       </Row>
